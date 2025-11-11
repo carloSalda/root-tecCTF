@@ -23,7 +23,6 @@
       overflow-x: hidden;
     }
 
-    /* Fondo animado tipo circuitos */
     body::before {
       content: "";
       position: fixed;
@@ -43,7 +42,6 @@
       animation: moveCircuit 25s linear infinite;
       opacity: 0.15;
       z-index: -2;
-      transform: translate3d(0,0,0);
     }
 
     @keyframes moveCircuit {
@@ -90,12 +88,13 @@
       color: var(--white); outline: none; font-size: 14px; box-sizing: border-box;
     }
     textarea { resize: vertical; min-height: 80px; }
+
     .small { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
     .members { margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
     .member {
       display: grid; grid-template-columns: 1.2fr 1fr 0.6fr auto; gap: 8px; align-items: center;
     }
-    .member input, .member select { padding: 8px 10px; font-size: 13px; }
     button, .btn {
       background: var(--accent); color: var(--white); border: none;
       padding: 10px 14px; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 14px;
@@ -117,11 +116,7 @@
       <div class="logo">root@tec</div>
       <div>
         <h1>Registro - Cybersecurity Tec CTF</h1>
-        <p class="lead">Participa en nuestro <b>Capture The Flag</b>: demuestra tus habilidades de hacking ético en retos de seguridad realistas.</p>
-        <p class="small" style="margin-top:8px; color:#7c9cff;">
-          📍 <b>Innovaction Gym, CETEC Torre Norte, Piso 2</b><br>
-          📅 <b>20 de noviembre de 2025</b> | 🕒 <b>15:00h - 19:00h</b>
-        </p>
+        <p class="lead">Participa en nuestro <b>Capture The Flag</b>.</p>
       </div>
     </header>
 
@@ -129,24 +124,23 @@
       <h2 style="margin-top:0;font-size:16px">Formulario de Registro</h2>
       <div id="feedback" aria-live="polite"></div>
 
-      <form id="registroForm" action="#" method="post" novalidate>
+      <form id="registroForm" novalidate>
         <section>
           <div class="row">
             <div>
               <label for="teamName">Nombre del equipo *</label>
-              <input id="teamName" name="teamName" type="text" required placeholder="Ej. BlueRoot">
+              <input id="teamName" name="teamName" type="text" required>
             </div>
             <div>
               <label for="contactEmail">Correo de contacto *</label>
-              <input id="contactEmail" name="contactEmail" type="email" required placeholder="correo@ejemplo.com">
-              <div class="small">Usaremos este correo para confirmar tu registro.</div>
+              <input id="contactEmail" name="contactEmail" type="email" required>
             </div>
           </div>
 
           <div class="row" style="margin-top:12px;">
             <div>
               <label for="contactPhone">Teléfono / WhatsApp</label>
-              <input id="contactPhone" name="contactPhone" type="tel" placeholder="+52 1 55 ...">
+              <input id="contactPhone" name="contactPhone" type="tel">
             </div>
           </div>
         </section>
@@ -154,7 +148,7 @@
         <hr style="border:none;height:1px;background:rgba(255,255,255,0.1);margin:16px 0;">
 
         <section>
-          <label>Integrantes del equipo (mín. 1) *</label>
+          <label>Integrantes del equipo *</label>
           <div class="members" id="membersList"></div>
 
           <div style="display:flex;gap:8px;margin-top:8px;">
@@ -162,14 +156,13 @@
             <button type="button" id="removeMember" class="btn ghost">Eliminar último</button>
             <div class="muted right" id="memberCount">0 integrantes</div>
           </div>
-          <div class="small" style="margin-top:6px;">Máximo 6 integrantes por equipo.</div>
         </section>
 
         <hr style="border:none;height:1px;background:rgba(255,255,255,0.1);margin:16px 0;">
 
         <section>
-          <label for="comments">Comentarios o preguntas</label>
-          <textarea id="comments" name="comments" placeholder="¿Tienes alguna duda o comentario?"></textarea>
+          <label for="comments">Comentarios</label>
+          <textarea id="comments" name="comments"></textarea>
         </section>
 
         <div class="actions">
@@ -180,134 +173,149 @@
       </form>
     </main>
 
-    <footer>Cybersecurity Tec · Capture The Flag 2025</footer>
+    <footer>Cybersecurity Tec · CTF 2025</footer>
   </div>
 
-  <script>
-    (function(){
-      const membersList = document.getElementById('membersList');
-      const addMember = document.getElementById('addMember');
-      const removeMember = document.getElementById('removeMember');
-      const memberCount = document.getElementById('memberCount');
-      const registroForm = document.getElementById('registroForm');
-      const feedback = document.getElementById('feedback');
-      const previewBtn = document.getElementById('preview');
-      const MAX_MEMBERS = 6, MIN_MEMBERS = 1;
+<script>
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbx-hkXeLQoC-OfvR-OoNGb8-cyLs1khj8TDsdZAQOm9T57S_tjBeiOrdTnTgrtXtut06g/exec";
 
-      function updateMemberCounter(){
-        const count = membersList.querySelectorAll('.member').length;
-        memberCount.textContent = count + (count===1 ? ' integrante' : ' integrantes');
-      }
+(function(){
+  const membersList = document.getElementById('membersList');
+  const addMember = document.getElementById('addMember');
+  const removeMember = document.getElementById('removeMember');
+  const memberCount = document.getElementById('memberCount');
+  const registroForm = document.getElementById('registroForm');
+  const feedback = document.getElementById('feedback');
+  const previewBtn = document.getElementById('preview');
+  const MAX_MEMBERS = 6, MIN_MEMBERS = 1;
 
-      function createMemberRow(index){
-        const wrapper = document.createElement('div');
-        wrapper.className = 'member';
-        wrapper.dataset.index = index;
+  function updateMemberCounter(){
+    const count = membersList.querySelectorAll('.member').length;
+    memberCount.textContent = count + (count===1 ? ' integrante' : ' integrantes');
+  }
 
-        const nameInput = document.createElement('input');
-        nameInput.type = 'text';
-        nameInput.name = `memberName_${index}`;
-        nameInput.placeholder = 'Nombre completo *';
-        nameInput.required = index === 1;
+  function createMemberRow(index){
+    const wrapper = document.createElement('div');
+    wrapper.className = 'member';
+    wrapper.dataset.index = index;
 
-        const matriculaInput = document.createElement('input');
-        matriculaInput.type = 'text';
-        matriculaInput.name = `memberMatricula_${index}`;
-        matriculaInput.placeholder = 'Matrícula *';
-        matriculaInput.required = index === 1;
+    wrapper.innerHTML = `
+      <input type="text" name="memberName_${index}" placeholder="Nombre completo *" required>
+      <input type="text" name="memberMatricula_${index}" placeholder="Matrícula *" required>
+      <select name="memberSize_${index}">
+        <option>XS</option><option>S</option><option selected>M</option>
+        <option>L</option><option>XL</option><option>XXL</option>
+      </select>
+      <button type="button" class="btn ghost member-remove">Eliminar</button>
+    `;
 
-        const sizeSelect = document.createElement('select');
-        sizeSelect.name = `memberSize_${index}`;
-        ["XS","S","M","L","XL","XXL"].forEach(size=>{
-          const opt = document.createElement('option');
-          opt.value = size; opt.textContent = size;
-          if(size==="M") opt.selected = true;
-          sizeSelect.appendChild(opt);
-        });
+    wrapper.querySelector(".member-remove").addEventListener("click", ()=>{
+      membersList.removeChild(wrapper);
+      refreshIndices();
+    });
 
-        const removeBtn = document.createElement('button');
-        removeBtn.type = 'button';
-        removeBtn.className = 'btn ghost';
-        removeBtn.textContent = 'Eliminar';
-        removeBtn.addEventListener('click', ()=> {
-          membersList.removeChild(wrapper);
-          refreshIndices();
-        });
+    return wrapper;
+  }
 
-        wrapper.append(nameInput, matriculaInput, sizeSelect, removeBtn);
-        return wrapper;
-      }
+  function refreshIndices(){
+    Array.from(membersList.children).forEach((r,i)=>{
+      r.dataset.index = i+1;
+    });
+    updateMemberCounter();
+  }
 
-      function refreshIndices(){
-        Array.from(membersList.children).forEach((r,i)=>{
-          r.dataset.index = i+1;
-          const name = r.querySelector('input[type="text"]');
-          if(name) name.required = (i===0);
-        });
-        updateMemberCounter();
-      }
+  function ensureInitial(){
+    if(membersList.children.length===0){
+      membersList.appendChild(createMemberRow(1));
+      updateMemberCounter();
+    }
+  }
 
-      function ensureInitial(){
-        if(membersList.children.length===0){
-          membersList.appendChild(createMemberRow(1));
-          updateMemberCounter();
-        }
-      }
+  addMember.addEventListener('click',()=>{
+    if(membersList.children.length>=MAX_MEMBERS){
+      showFeedback('Máximo de integrantes alcanzado.', 'error');return;
+    }
+    membersList.appendChild(createMemberRow(membersList.children.length+1));
+    updateMemberCounter();
+  });
 
-      addMember.addEventListener('click',()=>{
-        if(membersList.children.length>=MAX_MEMBERS){
-          showFeedback('Máximo de integrantes alcanzado.', 'error');return;
-        }
-        membersList.appendChild(createMemberRow(membersList.children.length+1));
-        updateMemberCounter();
+  removeMember.addEventListener('click',()=>{
+    if(membersList.children.length>MIN_MEMBERS){
+      membersList.removeChild(membersList.lastChild);
+      updateMemberCounter();
+    }else showFeedback('Debe haber al menos 1 integrante.','error');
+  });
+
+  function showFeedback(msg,type='success'){
+    feedback.innerHTML = `<div class="alert ${type}">${msg}</div>`;
+    setTimeout(()=>feedback.innerHTML='',5000);
+  }
+
+  function collectForm(){
+    if(!registroForm.reportValidity()) return null;
+    const members = Array.from(membersList.children).map(r=>({
+      name:r.querySelector('input[name^="memberName"]').value,
+      matricula:r.querySelector('input[name^="memberMatricula"]').value,
+      size:r.querySelector('select').value
+    }));
+    return {
+      teamName:registroForm.teamName.value,
+      contactEmail:registroForm.contactEmail.value,
+      contactPhone:registroForm.contactPhone.value,
+      comments:registroForm.comments.value,
+      members
+    };
+  }
+
+  previewBtn.addEventListener('click',e=>{
+    e.preventDefault();
+    const d = collectForm(); if(!d) return;
+    let t = `Equipo: ${d.teamName}\nContacto: ${d.contactEmail}${d.contactPhone?' / '+d.contactPhone:''}\n\nIntegrantes:\n`;
+    d.members.forEach((m,i)=>t+=`${i+1}. ${m.name} (${m.matricula}) - Talla: ${m.size}\n`);
+    if(d.comments) t += `\nComentarios: ${d.comments}`;
+    alert(t);
+  });
+
+  registroForm.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const d = collectForm(); if(!d) return;
+
+    // Formatear columnas
+    const payload = {
+      timestamp: new Date().toISOString(),
+      teamName: d.teamName,
+      contactEmail: d.contactEmail,
+      contactPhone: d.contactPhone,
+      comments: d.comments,
+    };
+
+    d.members.forEach((m,i)=>{
+      payload[`member${i+1}_name`] = m.name;
+      payload[`member${i+1}_matricula`] = m.matricula;
+      payload[`member${i+1}_size`] = m.size;
+    });
+
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
       });
 
-      removeMember.addEventListener('click',()=>{
-        if(membersList.children.length>MIN_MEMBERS){
-          membersList.removeChild(membersList.lastChild);
-          updateMemberCounter();
-        }else showFeedback('Debe haber al menos 1 integrante.','error');
-      });
-
-      function showFeedback(msg,type='success'){
-        feedback.innerHTML = `<div class="alert ${type}">${msg}</div>`;
-        setTimeout(()=>feedback.innerHTML='',5000);
-      }
-
-      function collectForm(){
-        if(!registroForm.reportValidity()) return null;
-        const members = Array.from(membersList.children).map(r=>({
-          name:r.querySelector('input[name^="memberName"]').value,
-          matricula:r.querySelector('input[name^="memberMatricula"]').value,
-          size:r.querySelector('select').value
-        }));
-        return {
-          teamName:registroForm.teamName.value,
-          contactEmail:registroForm.contactEmail.value,
-          contactPhone:registroForm.contactPhone.value,
-          comments:registroForm.comments.value,
-          members
-        };
-      }
-
-      previewBtn.addEventListener('click',e=>{
-        e.preventDefault();
-        const d = collectForm(); if(!d) return;
-        let t = `Equipo: ${d.teamName}\nContacto: ${d.contactEmail}${d.contactPhone?' / '+d.contactPhone:''}\n\nIntegrantes:\n`;
-        d.members.forEach((m,i)=>t+=`${i+1}. ${m.name} (${m.matricula}) - Talla: ${m.size}\n`);
-        if(d.comments) t += `\nComentarios: ${d.comments}`;
-        alert(t);
-      });
-
-      registroForm.addEventListener('submit',e=>{
-        e.preventDefault();
-        const d = collectForm(); if(!d) return;
-        showFeedback('Registro enviado con éxito. Revisa tu correo.','success');
-        registroForm.reset();membersList.innerHTML='';ensureInitial();
-      });
-
+      showFeedback('Registro enviado con éxito. Revisa tu correo.','success');
+      registroForm.reset();
+      membersList.innerHTML='';
       ensureInitial();
-    })();
-  </script>
+    } catch (err) {
+      showFeedback("Error al enviar el registro.", "error");
+    }
+  });
+
+  ensureInitial();
+})();
+</script>
+
 </body>
 </html>
