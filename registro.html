@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Registro - Cybersecurity Tec CTF</title>
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --card: rgba(18,18,26,0.8);
+      --accent: #7c5cff;
+      --muted: #9aa0a6;
+      --white: #ffffff;
+      --success: #1ea77e;
+      --danger: #ff5c5c;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Fondo animado tipo circuitos */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 20% 30%, #16213e, #0f0f10 70%);
+      z-index: -3;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 200%; height: 200%;
+      background-image: 
+        repeating-linear-gradient(90deg, rgba(0,255,255,0.1) 0, rgba(0,255,255,0.05) 1px, transparent 2px, transparent 50px),
+        repeating-linear-gradient(0deg, rgba(0,255,255,0.1) 0, rgba(0,255,255,0.05) 1px, transparent 2px, transparent 50px);
+      animation: moveCircuit 25s linear infinite;
+      opacity: 0.15;
+      z-index: -2;
+      transform: translate3d(0,0,0);
+    }
+
+    @keyframes moveCircuit {
+      from { transform: translate(0,0); }
+      to { transform: translate(-200px, -200px); }
+    }
+
+    .container { 
+      max-width: 980px; 
+      margin: 40px auto; 
+      padding: 24px; 
+      background: var(--card); 
+      border-radius: 16px; 
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    }
+
+    header { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; }
+    .logo {
+      background: linear-gradient(90deg, #b088ff, #ff84b3);
+      min-width: 75px; height: 60px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: #0b0b0c;
+      box-shadow: 0 6px 18px rgba(124,92,255,0.25);
+      font-size: 18px;
+      white-space: nowrap;
+      padding: 0 10px;
+    }
+
+    h1 { margin: 0; font-size: 22px; }
+    p.lead { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+    main.card {
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px; padding: 20px;
+      box-shadow: 0 6px 28px rgba(2,2,2,0.6);
+    }
+
+    form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width:700px){ form .row { grid-template-columns: 1fr; } }
+    label { display: block; font-size: 13px; margin-bottom: 6px; color: var(--muted); }
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+      width: 100%; padding: 10px 12px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.06); background: transparent;
+      color: var(--white); outline: none; font-size: 14px; box-sizing: border-box;
+    }
+    textarea { resize: vertical; min-height: 80px; }
+    .small { font-size: 12px; color: var(--muted); margin-top: 6px; }
+    .members { margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
+    .member {
+      display: grid; grid-template-columns: 1.2fr 1fr 0.6fr auto; gap: 8px; align-items: center;
+    }
+    .member input, .member select { padding: 8px 10px; font-size: 13px; }
+    button, .btn {
+      background: var(--accent); color: var(--white); border: none;
+      padding: 10px 14px; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 14px;
+    }
+    .btn.ghost { background: transparent; border: 1px solid rgba(255,255,255,0.06); }
+    .btn.secondary { background: transparent; color: var(--muted); border: 1px solid rgba(255,255,255,0.04); }
+    .actions { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+    .alert { padding: 10px 12px; border-radius: 8px; margin-bottom: 12px; font-size: 14px; }
+    .alert.success { background: rgba(30,167,126,0.12); color: var(--success); }
+    .alert.error { background: rgba(255,92,92,0.07); color: var(--danger); }
+    .muted { color: var(--muted); font-size: 13px; } 
+    .right { margin-left: auto; }
+    footer { margin-top: 18px; color: var(--muted); font-size: 13px; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">root@tec</div>
+      <div>
+        <h1>Registro - Cybersecurity Tec CTF</h1>
+        <p class="lead">Participa en nuestro <b>Capture The Flag</b>: demuestra tus habilidades de hacking ético en retos de seguridad realistas.</p>
+        <p class="small" style="margin-top:8px; color:#7c9cff;">
+          📍 <b>Innovaction Gym, CETEC Torre Norte, Piso 2</b><br>
+          📅 <b>20 de noviembre de 2025</b> | 🕒 <b>15:00h - 19:00h</b>
+        </p>
+      </div>
+    </header>
+
+    <main class="card">
+      <h2 style="margin-top:0;font-size:16px">Formulario de Registro</h2>
+      <div id="feedback" aria-live="polite"></div>
+
+      <form id="registroForm" action="#" method="post" novalidate>
+        <section>
+          <div class="row">
+            <div>
+              <label for="teamName">Nombre del equipo *</label>
+              <input id="teamName" name="teamName" type="text" required placeholder="Ej. BlueRoot">
+            </div>
+            <div>
+              <label for="contactEmail">Correo de contacto *</label>
+              <input id="contactEmail" name="contactEmail" type="email" required placeholder="correo@ejemplo.com">
+              <div class="small">Usaremos este correo para confirmar tu registro.</div>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:12px;">
+            <div>
+              <label for="contactPhone">Teléfono / WhatsApp</label>
+              <input id="contactPhone" name="contactPhone" type="tel" placeholder="+52 1 55 ...">
+            </div>
+          </div>
+        </section>
+
+        <hr style="border:none;height:1px;background:rgba(255,255,255,0.1);margin:16px 0;">
+
+        <section>
+          <label>Integrantes del equipo (mín. 1) *</label>
+          <div class="members" id="membersList"></div>
+
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <button type="button" id="addMember" class="btn">Agregar integrante</button>
+            <button type="button" id="removeMember" class="btn ghost">Eliminar último</button>
+            <div class="muted right" id="memberCount">0 integrantes</div>
+          </div>
+          <div class="small" style="margin-top:6px;">Máximo 6 integrantes por equipo.</div>
+        </section>
+
+        <hr style="border:none;height:1px;background:rgba(255,255,255,0.1);margin:16px 0;">
+
+        <section>
+          <label for="comments">Comentarios o preguntas</label>
+          <textarea id="comments" name="comments" placeholder="¿Tienes alguna duda o comentario?"></textarea>
+        </section>
+
+        <div class="actions">
+          <button id="submitBtn" class="btn" type="submit">Enviar registro</button>
+          <button type="reset" class="btn secondary">Limpiar</button>
+          <button type="button" id="preview" class="btn ghost">Vista previa</button>
+        </div>
+      </form>
+    </main>
+
+    <footer>Cybersecurity Tec · Capture The Flag 2025</footer>
+  </div>
+
+  <script>
+    (function(){
+      const membersList = document.getElementById('membersList');
+      const addMember = document.getElementById('addMember');
+      const removeMember = document.getElementById('removeMember');
+      const memberCount = document.getElementById('memberCount');
+      const registroForm = document.getElementById('registroForm');
+      const feedback = document.getElementById('feedback');
+      const previewBtn = document.getElementById('preview');
+      const MAX_MEMBERS = 6, MIN_MEMBERS = 1;
+
+      function updateMemberCounter(){
+        const count = membersList.querySelectorAll('.member').length;
+        memberCount.textContent = count + (count===1 ? ' integrante' : ' integrantes');
+      }
+
+      function createMemberRow(index){
+        const wrapper = document.createElement('div');
+        wrapper.className = 'member';
+        wrapper.dataset.index = index;
+
+        const nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.name = `memberName_${index}`;
+        nameInput.placeholder = 'Nombre completo *';
+        nameInput.required = index === 1;
+
+        const matriculaInput = document.createElement('input');
+        matriculaInput.type = 'text';
+        matriculaInput.name = `memberMatricula_${index}`;
+        matriculaInput.placeholder = 'Matrícula *';
+        matriculaInput.required = index === 1;
+
+        const sizeSelect = document.createElement('select');
+        sizeSelect.name = `memberSize_${index}`;
+        ["XS","S","M","L","XL","XXL"].forEach(size=>{
+          const opt = document.createElement('option');
+          opt.value = size; opt.textContent = size;
+          if(size==="M") opt.selected = true;
+          sizeSelect.appendChild(opt);
+        });
+
+        const removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'btn ghost';
+        removeBtn.textContent = 'Eliminar';
+        removeBtn.addEventListener('click', ()=> {
+          membersList.removeChild(wrapper);
+          refreshIndices();
+        });
+
+        wrapper.append(nameInput, matriculaInput, sizeSelect, removeBtn);
+        return wrapper;
+      }
+
+      function refreshIndices(){
+        Array.from(membersList.children).forEach((r,i)=>{
+          r.dataset.index = i+1;
+          const name = r.querySelector('input[type="text"]');
+          if(name) name.required = (i===0);
+        });
+        updateMemberCounter();
+      }
+
+      function ensureInitial(){
+        if(membersList.children.length===0){
+          membersList.appendChild(createMemberRow(1));
+          updateMemberCounter();
+        }
+      }
+
+      addMember.addEventListener('click',()=>{
+        if(membersList.children.length>=MAX_MEMBERS){
+          showFeedback('Máximo de integrantes alcanzado.', 'error');return;
+        }
+        membersList.appendChild(createMemberRow(membersList.children.length+1));
+        updateMemberCounter();
+      });
+
+      removeMember.addEventListener('click',()=>{
+        if(membersList.children.length>MIN_MEMBERS){
+          membersList.removeChild(membersList.lastChild);
+          updateMemberCounter();
+        }else showFeedback('Debe haber al menos 1 integrante.','error');
+      });
+
+      function showFeedback(msg,type='success'){
+        feedback.innerHTML = `<div class="alert ${type}">${msg}</div>`;
+        setTimeout(()=>feedback.innerHTML='',5000);
+      }
+
+      function collectForm(){
+        if(!registroForm.reportValidity()) return null;
+        const members = Array.from(membersList.children).map(r=>({
+          name:r.querySelector('input[name^="memberName"]').value,
+          matricula:r.querySelector('input[name^="memberMatricula"]').value,
+          size:r.querySelector('select').value
+        }));
+        return {
+          teamName:registroForm.teamName.value,
+          contactEmail:registroForm.contactEmail.value,
+          contactPhone:registroForm.contactPhone.value,
+          comments:registroForm.comments.value,
+          members
+        };
+      }
+
+      previewBtn.addEventListener('click',e=>{
+        e.preventDefault();
+        const d = collectForm(); if(!d) return;
+        let t = `Equipo: ${d.teamName}\nContacto: ${d.contactEmail}${d.contactPhone?' / '+d.contactPhone:''}\n\nIntegrantes:\n`;
+        d.members.forEach((m,i)=>t+=`${i+1}. ${m.name} (${m.matricula}) - Talla: ${m.size}\n`);
+        if(d.comments) t += `\nComentarios: ${d.comments}`;
+        alert(t);
+      });
+
+      registroForm.addEventListener('submit',e=>{
+        e.preventDefault();
+        const d = collectForm(); if(!d) return;
+        showFeedback('Registro enviado con éxito. Revisa tu correo.','success');
+        registroForm.reset();membersList.innerHTML='';ensureInitial();
+      });
+
+      ensureInitial();
+    })();
+  </script>
+</body>
+</html>
