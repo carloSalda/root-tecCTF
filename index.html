@@ -31,16 +31,19 @@
       background: radial-gradient(circle at 20% 30%, #16213e, #0f0f10 70%);
       z-index: -3;
     }
+    
+    /* === CAMBIO DE FONDO === */
+    /* Se aumentó la opacidad de 0.15 a 0.35 para que se note más */
     body::after {
       content: "";
       position: fixed;
       top: 0; left: 0;
       width: 200%; height: 200%;
       background-image: 
-        repeating-linear-gradient(90deg, rgba(0,255,255,0.1) 0, rgba(0,255,255,0.05) 1px, transparent 2px, transparent 50px),
-        repeating-linear-gradient(0deg, rgba(0,255,255,0.1) 0, rgba(0,255,255,0.05) 1px, transparent 2px, transparent 50px);
+        repeating-linear-gradient(90deg, rgba(0,255,255,0.2) 0, rgba(0,255,255,0.1) 1px, transparent 2px, transparent 50px),
+        repeating-linear-gradient(0deg, rgba(0,255,255,0.2) 0, rgba(0,255,255,0.1) 1px, transparent 2px, transparent 50px);
       animation: moveCircuit 25s linear infinite;
-      opacity: 0.15;
+      opacity: 0.35; /* <-- MÁS VISIBLE */
       z-index: -2;
     }
 
@@ -59,14 +62,12 @@
       box-shadow: 0 0 30px rgba(0,0,0,0.6);
     }
 
-    /* Modificación para alinear el logo y el texto */
     header { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; }
     
-    /* Estilo del logo para que se vea bien */
     .header-logo {
-        max-width: 150px; /* Ajusta este valor si necesitas un logo más grande o pequeño */
+        max-width: 150px;
         height: auto;
-        border-radius: 8px; /* Si quieres bordes redondeados en el logo */
+        border-radius: 8px;
     }
 
     h1 { margin: 0; font-size: 22px; }
@@ -78,7 +79,7 @@
     }
 
     form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    @media (max-width:700px){ form .row { grid-template-columns: 1fr; } }
+    
     label { display: block; font-size: 13px; margin-bottom: 6px; color: var(--muted); }
     input[type="text"], input[type="email"], input[type="tel"], select, textarea {
       width: 100%; padding: 10px 12px; border-radius: 8px;
@@ -106,6 +107,37 @@
     .muted { color: var(--muted); font-size: 13px; } 
     .right { margin-left: auto; }
     footer { margin-top: 18px; color: var(--muted); font-size: 13px; text-align: center; }
+
+    /* === CAMBIOS PARA MÓVIL === */
+    /* Este bloque reemplaza el @media query que tenías */
+    @media (max-width:700px) {
+      /* Esto ya lo tenías: apila las filas principales */
+      form .row { 
+        grid-template-columns: 1fr; 
+      }
+
+      /* 1. Hace que la rejilla de miembros sea de 2x2 */
+      .member {
+        grid-template-columns: 1fr 1fr; /* 2 columnas iguales */
+        gap: 12px; /* Añade un poco más de espacio */
+      }
+      
+      /* 2. Hace que los campos de nombre y matrícula ocupen la fila completa */
+      .member input[type="text"] {
+        grid-column: 1 / -1; /* Ocupa desde la línea 1 hasta la última */
+      }
+      
+      /* 3. Reduce el padding en móvil para ganar espacio */
+      .container {
+        padding: 16px;
+        margin: 20px auto;
+      }
+      
+      /* 4. Reduce el logo para que no ocupe tanto espacio */
+      .header-logo {
+        max-width: 100px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -115,7 +147,8 @@
       <div>
         <h1>Registro - Cybersecurity Tec CTF</h1>
         <p class="lead">
-          Participa en nuestro <b>Capture The Flag</b>.<br>
+          Participa en nuestro <b>Capture The Flag</b> y prepárate para convertirte en el mejor
+          equipo de hackers del Tec. <br>
           <br>
           <span style="color: var(--accent); font-weight: bold;">Innovaction Gym.</span><br>
           CETEC, Piso 2, Torre Norte<br>
@@ -182,7 +215,7 @@
 
 <script>
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxHYQ41IjUds8cR1D_iYr30utWFzy06I5OqvfwGVU1CNb-gkUmPzXczw-qe_mMJzws2dg/exec";
+  "https://script.google.com/macros/s/AKfycbzivL6VqmYhiyBAw1kc3fqHeJEhl0bAzHDxYMI3DApbN6HR3U0Jp95H4-keYL6raagJmw/exec";
 
 (function(){
   const membersList = document.getElementById('membersList');
@@ -199,6 +232,8 @@ function updateMemberCounter(){
     memberCount.textContent = count + (count===1 ? ' integrante' : ' integrantes');
   }
 
+  /* === CAMBIO DE JS PARA MÓVIL === */
+  /* Añadido placeholder "Talla *" y 'required' al <select> */
   function createMemberRow(index){
     const wrapper = document.createElement('div');
     wrapper.className = 'member';
@@ -207,8 +242,9 @@ function updateMemberCounter(){
     wrapper.innerHTML = `
       <input type="text" name="memberName_${index}" placeholder="Nombre completo *" required>
       <input type="text" name="memberMatricula_${index}" placeholder="Matrícula *" required>
-      <select name="memberSize_${index}">
-        <option>XS</option><option>S</option><option selected>M</option>
+      <select name="memberSize_${index}" required>
+        <option value="" disabled selected>Talla *</option>
+        <option>XS</option><option>S</option><option>M</option>
         <option>L</option><option>XL</option><option>XXL</option>
       </select>
       <button type="button" class="btn ghost member-remove">Eliminar</button>
@@ -301,6 +337,7 @@ function updateMemberCounter(){
     try {
       const response = await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
+        /* Corrección de CORS que ya teníamos */
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body: JSON.stringify(payload)
       });
