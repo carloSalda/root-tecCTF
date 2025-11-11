@@ -1,319 +1,328 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Registro - Cybersecurity Tec CTF</title>
-  <style>
-    :root {
-      --bg: #0b0c10;
-      --card: rgba(18,18,26,0.8);
-      --accent: #7c5cff;
-      --muted: #9aa0a6;
-      --white: #ffffff;
-      --success: #1ea77e;
-      --danger: #ff5c5c;
-      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    html, body {
-      height: 100%;
-      margin: 0;
-      color: var(--white);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Registro - Cybersecurity Tec CTF</title>
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --card: rgba(18,18,26,0.8);
+      --accent: #7c5cff;
+      --muted: #9aa0a6;
+      --white: #ffffff;
+      --success: #1ea77e;
+      --danger: #ff5c5c;
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: radial-gradient(circle at 20% 30%, #16213e, #0f0f10 70%);
-      z-index: -3;
-    }
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 200%; height: 200%;
-      background-image: 
-        repeating-linear-gradient(90deg, rgba(0,255,255,0.1) 0, rgba(0,255,255,0.05) 1px, transparent 2px, transparent 50px),
-        repeating-linear-gradient(0deg, rgba(0,255,255,0.1) 0, rgba(0,255,255,0.05) 1px, transparent 2px, transparent 50px);
-      animation: moveCircuit 25s linear infinite;
-      opacity: 0.15;
-      z-index: -2;
-    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 20% 30%, #16213e, #0f0f10 70%);
+      z-index: -3;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 200%; height: 200%;
+      background-image: 
+        repeating-linear-gradient(90deg, rgba(0,255,255,0.1) 0, rgba(0,255,255,0.05) 1px, transparent 2px, transparent 50px),
+        repeating-linear-gradient(0deg, rgba(0,255,255,0.1) 0, rgba(0,255,255,0.05) 1px, transparent 2px, transparent 50px);
+      animation: moveCircuit 25s linear infinite;
+      opacity: 0.15;
+      z-index: -2;
+    }
 
-    @keyframes moveCircuit {
-      from { transform: translate(0,0); }
-      to { transform: translate(-200px, -200px); }
-    }
+    @keyframes moveCircuit {
+      from { transform: translate(0,0); }
+      to { transform: translate(-200px, -200px); }
+    }
 
-    .container { 
-      max-width: 980px; 
-      margin: 40px auto; 
-      padding: 24px; 
-      background: var(--card); 
-      border-radius: 16px; 
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 30px rgba(0,0,0,0.6);
-    }
+    .container { 
+      max-width: 980px; 
+      margin: 40px auto; 
+      padding: 24px; 
+      background: var(--card); 
+      border-radius: 16px; 
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+    }
 
-    header { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; }
-    .logo {
-      background: linear-gradient(90deg, #b088ff, #ff84b3);
-      min-width: 75px; height: 60px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; color: #0b0b0c;
-      box-shadow: 0 6px 18px rgba(124,92,255,0.25);
-      font-size: 18px;
-      white-space: nowrap;
-      padding: 0 10px;
-    }
+    header { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; }
+    .logo {
+      background: linear-gradient(90deg, #b088ff, #ff84b3);
+      min-width: 75px; height: 60px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; color: #0b0b0c;
+      box-shadow: 0 6px 18px rgba(124,92,255,0.25);
+      font-size: 18px;
+      white-space: nowrap;
+      padding: 0 10px;
+    }
 
-    h1 { margin: 0; font-size: 22px; }
-    p.lead { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
-    main.card {
-      background: rgba(255,255,255,0.04);
-      border-radius: 12px; padding: 20px;
-      box-shadow: 0 6px 28px rgba(2,2,2,0.6);
-    }
+    h1 { margin: 0; font-size: 22px; }
+    p.lead { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+    main.card {
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px; padding: 20px;
+      box-shadow: 0 6px 28px rgba(2,2,2,0.6);
+    }
 
-    form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    @media (max-width:700px){ form .row { grid-template-columns: 1fr; } }
-    label { display: block; font-size: 13px; margin-bottom: 6px; color: var(--muted); }
-    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
-      width: 100%; padding: 10px 12px; border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.06); background: transparent;
-      color: var(--white); outline: none; font-size: 14px; box-sizing: border-box;
-    }
-    textarea { resize: vertical; min-height: 80px; }
+    form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width:700px){ form .row { grid-template-columns: 1fr; } }
+    label { display: block; font-size: 13px; margin-bottom: 6px; color: var(--muted); }
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+      width: 100%; padding: 10px 12px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.06); background: transparent;
+      color: var(--white); outline: none; font-size: 14px; box-sizing: border-box;
+    }
+    textarea { resize: vertical; min-height: 80px; }
 
-    .small { font-size: 12px; color: var(--muted); margin-top: 6px; }
+    .small { font-size: 12px; color: var(--muted); margin-top: 6px; }
 
-    .members { margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
-    .member {
-      display: grid; grid-template-columns: 1.2fr 1fr 0.6fr auto; gap: 8px; align-items: center;
-    }
-    button, .btn {
-      background: var(--accent); color: var(--white); border: none;
-      padding: 10px 14px; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 14px;
-    }
-    .btn.ghost { background: transparent; border: 1px solid rgba(255,255,255,0.06); }
-    .btn.secondary { background: transparent; color: var(--muted); border: 1px solid rgba(255,255,255,0.04); }
-    .actions { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
-    .alert { padding: 10px 12px; border-radius: 8px; margin-bottom: 12px; font-size: 14px; }
-    .alert.success { background: rgba(30,167,126,0.12); color: var(--success); }
-    .alert.error { background: rgba(255,92,92,0.07); color: var(--danger); }
-    .muted { color: var(--muted); font-size: 13px; } 
-    .right { margin-left: auto; }
-    footer { margin-top: 18px; color: var(--muted); font-size: 13px; text-align: center; }
-  </style>
+    .members { margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
+    .member {
+      display: grid; grid-template-columns: 1.2fr 1fr 0.6fr auto; gap: 8px; align-items: center;
+    }
+    button, .btn {
+      background: var(--accent); color: var(--white); border: none;
+      padding: 10px 14px; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 14px;
+    }
+    .btn.ghost { background: transparent; border: 1px solid rgba(255,255,255,0.06); }
+    .btn.secondary { background: transparent; color: var(--muted); border: 1px solid rgba(255,255,255,0.04); }
+    .actions { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+    .alert { padding: 10px 12px; border-radius: 8px; margin-bottom: 12px; font-size: 14px; }
+    .alert.success { background: rgba(30,167,126,0.12); color: var(--success); }
+    .alert.error { background: rgba(255,92,92,0.07); color: var(--danger); }
+    .muted { color: var(--muted); font-size: 13px; } 
+    .right { margin-left: auto; }
+    footer { margin-top: 18px; color: var(--muted); font-size: 13px; text-align: center; }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">root@tec</div>
-      <div>
-        <h1>Registro - Cybersecurity Tec CTF</h1>
-        <p class="lead">Participa en nuestro <b>Capture The Flag</b>.</p>
-      </div>
-    </header>
+  <div class="container">
+    <header>
+      <div class="logo">root@tec</div>
+      <div>
+        <h1>Registro - Cybersecurity Tec CTF</h1>
+        <p class="lead">Participa en nuestro <b>Capture The Flag</b>.</p>
+      </div>
+    </header>
 
-    <main class="card">
-      <h2 style="margin-top:0;font-size:16px">Formulario de Registro</h2>
-      <div id="feedback" aria-live="polite"></div>
+    <main class="card">
+      <h2 style="margin-top:0;font-size:16px">Formulario de Registro</h2>
+      <div id="feedback" aria-live="polite"></div>
 
-      <form id="registroForm" novalidate>
-        <section>
-          <div class="row">
-            <div>
-              <label for="teamName">Nombre del equipo *</label>
-              <input id="teamName" name="teamName" type="text" required>
-            </div>
-            <div>
-              <label for="contactEmail">Correo de contacto *</label>
-              <input id="contactEmail" name="contactEmail" type="email" required>
-            </div>
-          </div>
+      <form id="registroForm" novalidate>
+        <section>
+          <div class="row">
+            <div>
+              <label for="teamName">Nombre del equipo *</label>
+              <input id="teamName" name="teamName" type="text" required>
+            </div>
+            <div>
+              <label for="contactEmail">Correo de contacto *</label>
+              <input id="contactEmail" name="contactEmail" type="email" required>
+            </div>
+          </div>
 
-          <div class="row" style="margin-top:12px;">
-            <div>
-              <label for="contactPhone">Teléfono / WhatsApp</label>
-              <input id="contactPhone" name="contactPhone" type="tel">
-            </div>
-          </div>
-        </section>
+          <div class="row" style="margin-top:12px;">
+            <div>
+              <label for="contactPhone">Teléfono / WhatsApp</label>
+              <input id="contactPhone" name="contactPhone" type="tel">
+            </div>
+          </div>
+        </section>
 
-        <hr style="border:none;height:1px;background:rgba(255,255,255,0.1);margin:16px 0;">
+        <hr style="border:none;height:1px;background:rgba(255,255,255,0.1);margin:16px 0;">
 
-        <section>
-          <label>Integrantes del equipo *</label>
-          <div class="members" id="membersList"></div>
+        <section>
+          <label>Integrantes del equipo *</label>
+          <div class="members" id="membersList"></div>
 
-          <div style="display:flex;gap:8px;margin-top:8px;">
-            <button type="button" id="addMember" class="btn">Agregar integrante</button>
-            <button type="button" id="removeMember" class="btn ghost">Eliminar último</button>
-            <div class="muted right" id="memberCount">0 integrantes</div>
-          </div>
-        </section>
+        _ <div style="display:flex;gap:8px;margin-top:8px;">
+            <button type="button" id="addMember" class="btn">Agregar integrante</button>
+            <button type="button" id="removeMember" class="btn ghost">Eliminar último</button>
+            <div class="muted right" id="memberCount">0 integrantes</div>
+          </div>
+    _   </section>
 
-        <hr style="border:none;height:1px;background:rgba(255,255,255,0.1);margin:16px 0;">
+        <hr style="border:none;height:1px;background:rgba(255,255,255,0.1);margin:16px 0;">
 
-        <section>
-          <label for="comments">Comentarios</label>
-          <textarea id="comments" name="comments"></textarea>
-        </section>
+        <section>
+          <label for="comments">Comentarios</label>
+          <textarea id="comments" name="comments"></textarea>
+        </section>
 
-        <div class="actions">
-          <button id="submitBtn" class="btn" type="submit">Enviar registro</button>
-          <button type="reset" class="btn secondary">Limpiar</button>
-          <button type="button" id="preview" class="btn ghost">Vista previa</button>
-        </div>
-      </form>
-    </main>
+        <div class="actions">
+          <button id="submitBtn" class="btn" type="submit">Enviar registro</button>
+          <button type="reset" class="btn secondary">Limpiar</button>
+          <button type="button" id="preview" class="btn ghost">Vista previa</button>
+        </div>
+      </form>
+    </main>
 
-    <footer>Cybersecurity Tec · CTF 2025</footer>
-  </div>
+    <footer>Cybersecurity Tec · CTF 2025</footer>
+  </div>
 
 <script>
 const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbx-hkXeLQoC-OfvR-OoNGb8-cyLs1khj8TDsdZAQOm9T57S_tjBeiOrdTnTgrtXtut06g/exec";
+  "https://script.google.com/macros/s/AKfycbzivL6VqmYhiyBAw1kc3fqHeJEhl0bAzHDxYMI3DApbN6HR3U0Jp95H4-keYL6raagJmw/exec";
 
 (function(){
-  const membersList = document.getElementById('membersList');
-  const addMember = document.getElementById('addMember');
-  const removeMember = document.getElementById('removeMember');
-  const memberCount = document.getElementById('memberCount');
-  const registroForm = document.getElementById('registroForm');
-  const feedback = document.getElementById('feedback');
-  const previewBtn = document.getElementById('preview');
-  const MAX_MEMBERS = 6, MIN_MEMBERS = 1;
+  const membersList = document.getElementById('membersList');
+  const addMember = document.getElementById('addMember');
+  const removeMember = document.getElementById('removeMember');
+  const memberCount = document.getElementById('memberCount');
+  const registroForm = document.getElementById('registroForm');
+  const feedback = document.getElementById('feedback');
+  const previewBtn = document.getElementById('preview');
+  const MAX_MEMBERS = 6, MIN_MEMBERS = 1;
 
-  function updateMemberCounter(){
-    const count = membersList.querySelectorAll('.member').length;
-    memberCount.textContent = count + (count===1 ? ' integrante' : ' integrantes');
-  }
+function updateMemberCounter(){
+    const count = membersList.querySelectorAll('.member').length;
+    memberCount.textContent = count + (count===1 ? ' integrante' : ' integrantes');
+  }
 
-  function createMemberRow(index){
-    const wrapper = document.createElement('div');
-    wrapper.className = 'member';
-    wrapper.dataset.index = index;
+  function createMemberRow(index){
+    const wrapper = document.createElement('div');
+    wrapper.className = 'member';
+    wrapper.dataset.index = index;
 
-    wrapper.innerHTML = `
-      <input type="text" name="memberName_${index}" placeholder="Nombre completo *" required>
-      <input type="text" name="memberMatricula_${index}" placeholder="Matrícula *" required>
-      <select name="memberSize_${index}">
-        <option>XS</option><option>S</option><option selected>M</option>
-        <option>L</option><option>XL</option><option>XXL</option>
-      </select>
-      <button type="button" class="btn ghost member-remove">Eliminar</button>
-    `;
+    wrapper.innerHTML = `
+      <input type="text" name="memberName_${index}" placeholder="Nombre completo *" required>
+      <input type="text" name="memberMatricula_${index}" placeholder="Matrícula *" required>
+      <select name="memberSize_${index}">
+        <option>XS</option><option>S</option><option selected>M</option>
+        <option>L</option><option>XL</option><option>XXL</option>
+      </select>
+      <button type="button" class="btn ghost member-remove">Eliminar</button>
+    `;
 
-    wrapper.querySelector(".member-remove").addEventListener("click", ()=>{
-      membersList.removeChild(wrapper);
-      refreshIndices();
-    });
+    wrapper.querySelector(".member-remove").addEventListener("click", ()=>{
+      membersList.removeChild(wrapper);
+      refreshIndices();
+    });
 
-    return wrapper;
-  }
+    return wrapper;
+  }
 
-  function refreshIndices(){
-    Array.from(membersList.children).forEach((r,i)=>{
-      r.dataset.index = i+1;
-    });
-    updateMemberCounter();
-  }
+  function refreshIndices(){
+    Array.from(membersList.children).forEach((r,i)=>{
+      r.dataset.index = i+1;
+    });
+    updateMemberCounter();
+  }
 
-  function ensureInitial(){
-    if(membersList.children.length===0){
-      membersList.appendChild(createMemberRow(1));
-      updateMemberCounter();
+  function ensureInitial(){
+    if(membersList.children.length===0){
+      membersList.appendChild(createMemberRow(1));
+      updateMemberCounter();
+    }
+  }
+
+  addMember.addEventListener('click',()=>{
+    if(membersList.children.length>=MAX_MEMBERS){
+      showFeedback('Máximo de integrantes alcanzado.', 'error');return;
+    }
+    membersList.appendChild(createMemberRow(membersList.children.length+1));
+    updateMemberCounter();
+  });
+
+  removeMember.addEventListener('click',()=>{
+    if(membersList.children.length>MIN_MEMBERS){
+      membersList.removeChild(membersList.lastChild);
+      updateMemberCounter();
+    }else showFeedback('Debe haber al menos 1 integrante.','error');
+  });
+
+  function showFeedback(msg,type='success'){
+    feedback.innerHTML = `<div class="alert ${type}">${msg}</div>`;
+    setTimeout(()=>feedback.innerHTML='',5000);
+  }
+
+  function collectForm(){
+    if(!registroForm.reportValidity()) return null;
+    const members = Array.from(membersList.children).map(r=>({
+      name:r.querySelector('input[name^="memberName"]').value,
+      matricula:r.querySelector('input[name^="memberMatricula"]').value,
+      size:r.querySelector('select').value
+    }));
+    return {
+      teamName:registroForm.teamName.value,
+      contactEmail:registroForm.contactEmail.value,
+      contactPhone:registroForm.contactPhone.value,
+      comments:registroForm.comments.value,
+      members
+    };
+  }
+
+  previewBtn.addEventListener('click',e=>{
+    e.preventDefault();
+    const d = collectForm(); if(!d) return;
+    let t = `Equipo: ${d.teamName}\nContacto: ${d.contactEmail}${d.contactPhone?' / '+d.contactPhone:''}\n\nIntegrantes:\n`;
+    d.members.forEach((m,i)=>t+=`${i+1}. ${m.name} (${m.matricula}) - Talla: ${m.size}\n`);
+    if(d.comments) t += `\nComentarios: ${d.comments}`;
+    alert(t);
+  });
+
+  registroForm.addEventListener('submit',async e=>{
+  T e.preventDefault();
+    const d = collectForm(); if(!d) return;
+    
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+
+    const payload = {
+      timestamp: new Date().toISOString(),
+      teamName: d.teamName,
+      contactEmail: d.contactEmail,
+      contactPhone: d.contactPhone,
+      comments: d.comments,
+      members: d.members
+CH   };
+    
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        if (result.result === 'success') {
+          showFeedback('Registro enviado con éxito.','success');
+          registroForm.reset();
+          membersList.innerHTML='';
+          ensureInitial();
+        } else {
+          showFeedback(result.message || "Error en el servidor.", "error");
+        }
+      } else {
+        showFeedback("Error en la respuesta del servidor.", "error");
+      }
+    } catch (err) {
+      showFeedback("Error de red al enviar el registro.", "error");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar registro';
     }
-  }
+  });
 
-  addMember.addEventListener('click',()=>{
-    if(membersList.children.length>=MAX_MEMBERS){
-      showFeedback('Máximo de integrantes alcanzado.', 'error');return;
-    }
-    membersList.appendChild(createMemberRow(membersList.children.length+1));
-    updateMemberCounter();
-  });
-
-  removeMember.addEventListener('click',()=>{
-    if(membersList.children.length>MIN_MEMBERS){
-      membersList.removeChild(membersList.lastChild);
-      updateMemberCounter();
-    }else showFeedback('Debe haber al menos 1 integrante.','error');
-  });
-
-  function showFeedback(msg,type='success'){
-    feedback.innerHTML = `<div class="alert ${type}">${msg}</div>`;
-    setTimeout(()=>feedback.innerHTML='',5000);
-  }
-
-  function collectForm(){
-    if(!registroForm.reportValidity()) return null;
-    const members = Array.from(membersList.children).map(r=>({
-      name:r.querySelector('input[name^="memberName"]').value,
-      matricula:r.querySelector('input[name^="memberMatricula"]').value,
-      size:r.querySelector('select').value
-    }));
-    return {
-      teamName:registroForm.teamName.value,
-      contactEmail:registroForm.contactEmail.value,
-      contactPhone:registroForm.contactPhone.value,
-      comments:registroForm.comments.value,
-      members
-    };
-  }
-
-  previewBtn.addEventListener('click',e=>{
-    e.preventDefault();
-    const d = collectForm(); if(!d) return;
-    let t = `Equipo: ${d.teamName}\nContacto: ${d.contactEmail}${d.contactPhone?' / '+d.contactPhone:''}\n\nIntegrantes:\n`;
-    d.members.forEach((m,i)=>t+=`${i+1}. ${m.name} (${m.matricula}) - Talla: ${m.size}\n`);
-    if(d.comments) t += `\nComentarios: ${d.comments}`;
-    alert(t);
-  });
-
-  registroForm.addEventListener('submit',async e=>{
-    e.preventDefault();
-    const d = collectForm(); if(!d) return;
-
-    // Formatear columnas
-    const payload = {
-      timestamp: new Date().toISOString(),
-      teamName: d.teamName,
-      contactEmail: d.contactEmail,
-      contactPhone: d.contactPhone,
-      comments: d.comments,
-    };
-
-    d.members.forEach((m,i)=>{
-      payload[`member${i+1}_name`] = m.name;
-      payload[`member${i+1}_matricula`] = m.matricula;
-      payload[`member${i+1}_size`] = m.size;
-    });
-
-    try {
-      const response = await fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-
-      showFeedback('Registro enviado con éxito. Revisa tu correo.','success');
-      registroForm.reset();
-      membersList.innerHTML='';
-      ensureInitial();
-    } catch (err) {
-      showFeedback("Error al enviar el registro.", "error");
-    }
-  });
-
-  ensureInitial();
+  ensureInitial();
 })();
 </script>
 
