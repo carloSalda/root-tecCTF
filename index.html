@@ -59,16 +59,14 @@
       box-shadow: 0 0 30px rgba(0,0,0,0.6);
     }
 
+    /* Modificación para alinear el logo y el texto */
     header { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; }
-    .logo {
-      background: linear-gradient(90deg, #b088ff, #ff84b3);
-      min-width: 75px; height: 60px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; color: #0b0b0c;
-      box-shadow: 0 6px 18px rgba(124,92,255,0.25);
-      font-size: 18px;
-      white-space: nowrap;
-      padding: 0 10px;
+    
+    /* Estilo del logo para que se vea bien */
+    .header-logo {
+        max-width: 150px; /* Ajusta este valor si necesitas un logo más grande o pequeño */
+        height: auto;
+        border-radius: 8px; /* Si quieres bordes redondeados en el logo */
     }
 
     h1 { margin: 0; font-size: 22px; }
@@ -113,10 +111,16 @@
 <body>
   <div class="container">
     <header>
-      <div class="logo">root@tec</div>
+      <img src="https://i.imgur.com/wN58lhr.png" alt="Cybersecurity Tec CTF Logo" class="header-logo"> 
       <div>
         <h1>Registro - Cybersecurity Tec CTF</h1>
-        <p class="lead">Participa en nuestro <b>Capture The Flag</b>.</p>
+        <p class="lead">
+          Participa en nuestro <b>Capture The Flag</b>.<br>
+          <br>
+          <span style="color: var(--accent); font-weight: bold;">Innovaction Gym.</span><br>
+          CETEC, Piso 2, Torre Norte<br>
+          20 de nov 2025 | 15:00h - 19:00h
+        </p>
       </div>
     </header>
 
